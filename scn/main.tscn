@@ -1,0 +1,288 @@
+[gd_scene load_steps=28 format=3 uid="uid://dwyhbghm43dhf"]
+
+[ext_resource type="Script" path="res://scn/Player.gd" id="1_ljw1d"]
+[ext_resource type="Script" path="res://scn/main.gd" id="1_wk3c1"]
+[ext_resource type="Texture2D" uid="uid://cq1b5ewkxgty8" path="res://assets/Foliage/PNG/Shaded/sprite_0086.png" id="2_8isb2"]
+[ext_resource type="PackedScene" uid="uid://d12awqp27m1f8" path="res://scn/leaf.tscn" id="2_akdf0"]
+[ext_resource type="Texture2D" uid="uid://bgmtxc1lbbp5d" path="res://assets/Player/player_idle.png" id="2_i6f2r"]
+[ext_resource type="Texture2D" uid="uid://do4qg7djqa5wu" path="res://assets/Foliage/PNG/Shaded/sprite_0081.png" id="3_so26a"]
+[ext_resource type="Texture2D" uid="uid://1m6h44j3p15o" path="res://assets/Foliage/PNG/Shaded/sprite_0082.png" id="4_geqww"]
+[ext_resource type="Texture2D" uid="uid://bepxrddd2uh0a" path="res://assets/Foliage/PNG/Shaded/sprite_0083.png" id="5_2mct3"]
+[ext_resource type="Texture2D" uid="uid://cbc8jn7h042q8" path="res://assets/Player/player_walk1.png" id="5_o076b"]
+[ext_resource type="Texture2D" uid="uid://j28f65kt1fyf" path="res://assets/Player/player_walk2.png" id="6_4dmwn"]
+[ext_resource type="Texture2D" uid="uid://du6pibrbsjp12" path="res://assets/Foliage/PNG/Shaded/sprite_0084.png" id="6_5j1sx"]
+[ext_resource type="Texture2D" uid="uid://dqdsfpwp6mtwp" path="res://assets/Player/player_action1.png" id="7_k8coy"]
+[ext_resource type="Texture2D" uid="uid://c4wxw3nk2w867" path="res://assets/Foliage/PNG/Shaded/sprite_0085.png" id="7_qlbwx"]
+[ext_resource type="Texture2D" uid="uid://dal6bcn486wu" path="res://assets/Player/player_action2.png" id="8_1vmpp"]
+[ext_resource type="Texture2D" uid="uid://buh22d3n5bir0" path="res://assets/Foliage/PNG/Shaded/sprite_0087.png" id="9_15nys"]
+[ext_resource type="Texture2D" uid="uid://dt43rr6u3nh3q" path="res://assets/Foliage/PNG/Shaded/sprite_0088.png" id="10_ursbg"]
+[ext_resource type="Texture2D" uid="uid://b21i2s54t4lyi" path="res://assets/Foliage/PNG/Shaded/sprite_0089.png" id="11_5jexl"]
+[ext_resource type="FontFile" uid="uid://djfc7g5omha0h" path="res://assets/Fonts/Kenney Blocks.ttf" id="18_hhj0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3vlt"]
+size = Vector2(45, 17)
+
+[sub_resource type="Animation" id="Animation_qg8vd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_i6f2r")]
+}
+
+[sub_resource type="Animation" id="Animation_etgee"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_i6f2r")]
+}
+
+[sub_resource type="Animation" id="Animation_87iff"]
+resource_name = "rake"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("7_k8coy"), ExtResource("8_1vmpp")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_i0vs8"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("5_o076b"), ExtResource("6_4dmwn")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u2730"]
+_data = {
+"RESET": SubResource("Animation_qg8vd"),
+"idle": SubResource("Animation_etgee"),
+"rake": SubResource("Animation_87iff"),
+"walk": SubResource("Animation_i0vs8")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_635tl"]
+radius = 70.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j3phw"]
+load_path = "res://.godot/imported/timer_0.png-98fe1e02b2caf4bc60a981dcc5b01489.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vnw7c"]
+load_path = "res://.godot/imported/timer_100.png-42befd89ca76a797afd81040c08db317.ctex"
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_wk3c1")
+leafScene = ExtResource("2_akdf0")
+leafSprites = Array[Texture]([ExtResource("3_so26a"), ExtResource("4_geqww"), ExtResource("5_2mct3"), ExtResource("6_5j1sx"), ExtResource("7_qlbwx"), ExtResource("2_8isb2"), ExtResource("9_15nys"), ExtResource("10_ursbg"), ExtResource("11_5jexl")])
+
+[node name="Leaves" type="Node2D" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ljw1d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(0, -46)
+texture = ExtResource("2_i6f2r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_y3vlt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_u2730")
+}
+
+[node name="RakeArea" type="Area2D" parent="Player"]
+position = Vector2(0, -46)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RakeArea"]
+position = Vector2(0, 47)
+shape = SubResource("CircleShape2D_635tl")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DayTimer" type="TextureProgressBar" parent="CanvasLayer/Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -181.0
+offset_right = -53.0
+offset_bottom = 128.0
+grow_horizontal = 0
+scale = Vector2(1.25, 1.25)
+value = 100.0
+fill_mode = 5
+texture_under = SubResource("CompressedTexture2D_j3phw")
+texture_progress = SubResource("CompressedTexture2D_vnw7c")
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -181.0
+offset_right = -21.0
+offset_bottom = 163.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_fonts/font = ExtResource("18_hhj0j")
+theme_override_font_sizes/font_size = 32
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 159.0
+offset_bottom = 184.0
+
+[node name="Leaf" type="TextureRect" parent="CanvasLayer/Control/Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_top = 1.0
+offset_right = 159.0
+offset_bottom = 160.0
+texture = ExtResource("6_5j1sx")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="LeafLabel" type="Label" parent="CanvasLayer/Control/Control"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.5
+offset_top = -32.0
+offset_right = 78.5
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_fonts/font = ExtResource("18_hhj0j")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+
+[node name="ToolBar" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 334.0
+offset_top = -79.0
+offset_right = -324.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/ToolBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25098, 0.25098, 0.25098, 0.65098)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/ToolBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/ToolBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_hhj0j")
+theme_override_font_sizes/font_size = 16
+text = "1
+Rake"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/ToolBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_hhj0j")
+theme_override_font_sizes/font_size = 16
+text = "2
+Trash Bags"
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control/ToolBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_hhj0j")
+theme_override_font_sizes/font_size = 16
+text = "3
+Leafblower"

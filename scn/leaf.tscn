@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d12awqp27m1f8"]
+
+[ext_resource type="Texture2D" uid="uid://cq1b5ewkxgty8" path="res://assets/Foliage/PNG/Shaded/sprite_0086.png" id="1_khrjw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qk4et"]
+
+[node name="Leaf" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 0
+mass = 5.0
+gravity_scale = 0.0
+linear_damp = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("1_khrjw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qk4et")
